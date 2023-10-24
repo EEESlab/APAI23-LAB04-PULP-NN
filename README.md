@@ -18,8 +18,10 @@ ___
 2. access with your credentials. We distribute credentials by hand.
 3. open a new terminal
 4. clone this repository and go to your working directory.
-`git clone <url here>`
-`cd <folder>`
+```
+git clone <url here>
+cd <folder>
+```
 5. open the folder with visual studio code
 6. start working !
 

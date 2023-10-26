@@ -28,21 +28,21 @@ void gemm(int * MatA, int * MatB, int* MatC, int NN, int MM, int KK){
  *
  * Does the scheduling of the instructions avoid the stalls?
  * If you have the following pattern:
- * 
+ *
  * lw A, off(B)
  * lw C, off(D)
  * lw E, off(F)
  * lw G, off(H)
  * mac A, C, Z
  * mac E, G, Y
- * 
+ *
  * would there be any load stall?
  * This approach is known as loop unrolling. This method is
  * one of the most powerful technique you have to optimize code.
  * Especially in regular accesses tasks such as array operations,
  * loops might be always unrolled and, in fact, the compiler tends
  * to apply the unrolling whenever he can.
- * 
+ *
  * 1.3.2: Implement loop unrolling with factor of 2, 4, 8, 16 and
  * fill the table with the overall MACs/cycle for 8 cores execution.
  * Do you see a regression doing more aggressive loop unrolling? Why?
@@ -55,10 +55,10 @@ void gemm(int * MatA, int * MatB, int* MatC, int NN, int MM, int KK){
  * the available registers in your architecture, you would face with
  * spilling issues, where the compiler pushes and pops over and over
  * to and from the stack (memory) the values on the registers to reuse
- * the register for another operand. This effect would distroy all the
+ * the register for another operand. This effect would destroy all the
  * performance metrics.
- * 
- * BONUS 1.4: Is there a smarter way to compute it? If you look deeper
+ *
+ * BONUS TASK 1.4: Is there a smarter way to compute it? If you look deeper
  * into the kernel implemetation you should see that the index of matrix A
  * depends on i and k, which are the outermost and the innermost loop indexes
  * respectively, while the one of matrix B depends on the j and k. This means
@@ -68,11 +68,11 @@ void gemm(int * MatA, int * MatB, int* MatC, int NN, int MM, int KK){
  * "useful" operations with respect the total amount of executed instructions.
  * The higher is the OPEF the higher is the efficiency of the code.
  * Therefore, in our case the OPEF is the following:
- * 
- *                                 NB_MACS 
+ *
+ *                                 NB_MACS
  *                  OPEF = -----------------------
  *                             NB_INSTRUCTIONS
- * 
+ *
  * To calculate it you just have to consider the number of MACs in the
  * innermost loop with respect to the total amount of instructions (loads
  * + macs).
